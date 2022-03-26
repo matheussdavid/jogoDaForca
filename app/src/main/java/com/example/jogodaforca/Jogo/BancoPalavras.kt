@@ -11,11 +11,11 @@ class BancoPalavras {
     }
 
     fun popularLista(){
-        this.listaDePalavras.put("Cinema",  "Uma pipoquinha vai bem")
-        this.listaDePalavras.put("Futebol", "Somos Hexa")
-        this.listaDePalavras.put("Praia",   "Recarregar as energias")
-        this.listaDePalavras.put("Salgado", "Alguns acham melhor do que doce")
-        this.listaDePalavras.put("Brian",   "Droga, é o ...")
+        this.listaDePalavras.put("cinema",  "Uma pipoquinha vai bem")
+        this.listaDePalavras.put("futebol", "Somos Hexa")
+        this.listaDePalavras.put("praia",   "Recarregar as energias")
+        this.listaDePalavras.put("salgado", "Alguns acham melhor do que doce")
+        this.listaDePalavras.put("brian",   "Droga, é o ...")
     }
 
     fun sorteio(){

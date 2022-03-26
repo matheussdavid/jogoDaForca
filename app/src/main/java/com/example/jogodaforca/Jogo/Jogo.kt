@@ -9,6 +9,7 @@ class Jogo(palavra: String, dica: String){
     private var letrasUsadas = mutableListOf<String>()
     private val palavra: String
     private val dica: String
+    private var status: String
 
     init {
         this.chances = 6
@@ -17,6 +18,7 @@ class Jogo(palavra: String, dica: String){
         this.ganhar = false
         this.palavra = palavra
         this.dica = dica
+        this.status = "Jogo Iniciado"
         this.esconderletras()
 
     }
@@ -40,7 +42,8 @@ class Jogo(palavra: String, dica: String){
     }
 
     fun ganhou(){
-        if(this.palavra.equals(this.palavraEscondida)){
+        var palavraEcondida = this.palavraEscondida.joinToString("")
+        if(this.palavra.equals(palavraEcondida)){
             this.ganhar = true
         }
     }
@@ -59,43 +62,55 @@ class Jogo(palavra: String, dica: String){
         return this.dica
     }
 
-   /* fun jogar(){
-        var letra: String
-        while(this.statusJogo == true){
-            this.ganhou()
-            if(this.chances >=1 && this.ganhar == false ){
-                println("--------------------------------\n")
-                println("${this.chances}/6 chances disponíveis")
-                println("PALAVRA: ${this.palavraEscondida}")
-                println("DICA: $dica")
-                print("Informe a letra a ser procurada: ")
-                letra = readLine().toString().lowercase()
-                if(this.palavra.contains(letra) && !this.letrasUsadas.contains(letra)){
-                    this.buscaLetra(letra)
-                    this.letrasUsadas.add(letra)
-                }
-                else if(this.letrasUsadas.contains(letra)){
-                    println("A letra: $letra já foi utilizada, tente com outra!!!")
-                    println("Letras utilizadas: ${this.letrasUsadas}")
-                }
-                else{
-                    println("Letra incorreta, tente novamente")
-                    this.letrasUsadas.add(letra)
-                    println("Letras utilizadas: ${this.letrasUsadas}")
-                    this.chances--
-                }
+    fun getPalavra(): String {
+        return this.palavra
+    }
+
+    fun getLetrasUsadas(): MutableList<String> {
+        return this.letrasUsadas
+    }
+
+    fun getChances(): Int {
+        return this.chances
+    }
+
+    fun checaStatus(){
+        if(this.chances == 0){
+            this.status = "Perdeu"
+        }
+        if(this.ganhar){
+            this.status = "Ganhou"
+        }
+    }
+
+    fun getStatus(): String {
+        return this.status
+    }
+
+    fun jogar(letra: String): Boolean{
+        var sucesso = true
+        if(this.chances >=1 && this.ganhar == false ){
+            if(this.palavra.contains(letra) && !this.letrasUsadas.contains(letra)){
+                this.buscaLetra(letra)
+                this.letrasUsadas.add(letra)
+                sucesso = true
             }
             else{
-                if(this.ganhar){
-                    println("\n\n!!! VENCEDOR !!!")
-                    println("Parabéns, você acertou a palavra $this.palavra! e te restavam ${this.chances} chances")
-                    break
-                }else{
-                    println("--------------------------------\n")
-                    this.statusJogo = false
-                    println("Você estourou o número de tentativas, Fim de Jogo!")
-                }
+                this.letrasUsadas.add(letra)
+                this.chances--
+                sucesso =  false
             }
         }
-    }̣*/
+        else{
+            if(this.ganhar){
+                println("\n\n!!! VENCEDOR !!!")
+                println("Parabéns, você acertou a palavra $this.palavra! e te restavam ${this.chances} chances")
+            }else{
+                println("--------------------------------\n")
+                this.statusJogo = false
+                println("Você estourou o número de tentativas, Fim de Jogo!")
+            }
+        }
+        return sucesso
+    }
 }
