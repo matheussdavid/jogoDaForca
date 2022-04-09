@@ -1,5 +1,7 @@
 package com.example.jogodaforca
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -9,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.jogodaforca.Jogo.BancoPalavras
 import com.example.jogodaforca.Jogo.Jogo
 
@@ -73,6 +76,7 @@ class MainActivity : AppCompatActivity() {
             }
             checaStatus()
             atualizaTela()
+            resultado()
         }
     }
 
@@ -87,5 +91,39 @@ class MainActivity : AppCompatActivity() {
     private fun checaStatus() {
         this@MainActivity.jogo.ganhou()
         this@MainActivity.jogo.checaStatus()
+    }
+
+    private fun resultado(){
+        var status  = this@MainActivity.tvStatus.text
+        var dica    = this@MainActivity.jogo.getDica()
+        var palavra = this@MainActivity.jogo.getPalavra()
+        var chances   = this@MainActivity.jogo.getChances()
+
+
+        if(status.equals("Ganhou") || status.equals("Perdeu")){
+//            val resultado = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+//                if(it.resultCode == RESULT_OK){
+//                    val jogo = it.data?.getStringExtra("JOGO")
+//                    Toast.makeText(this, "$jogo", Toast.LENGTH_SHORT).show()
+//                    this.recreate()
+//                }else{
+//                    Toast.makeText(this, "Encerrando", Toast.LENGTH_SHORT).show()
+//                    finish()
+//                }
+//            }
+
+            val intent = Intent(this, ResultadoActivity::class.java).apply{
+                putExtra("RESULTADO", "$status")
+                putExtra("PALAVRA", palavra)
+                putExtra("DICA", dica)
+                putExtra("CHANCES", "$chances")
+            }
+
+            if(intent.resolveActivity(packageManager) != null){
+//                resultado.launch(intent)
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 }

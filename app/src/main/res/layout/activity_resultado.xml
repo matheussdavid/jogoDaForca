@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ResultadoActivity">
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="36dp"
+        android:height="0dp"
+        android:layout_weight="0.4"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:text="Resultado:" />
+
+
+    <TextView
+        android:id="@+id/tvResultado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="0dp"
+        android:gravity="center"
+        android:layout_weight="0.6"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:text="Você..."/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:height="0dp"
+        android:layout_weight="2">
+
+        <TextView
+            android:id="@+id/tvPalavra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="28dp"
+            android:text="Palavra: "/>
+
+        <TextView
+            android:id="@+id/tvDica"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="22dp"
+            android:text="Dica: "/>
+
+        <TextView
+            android:id="@+id/tvChances"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="0dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="22dp"
+            android:text="Chances: "/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:height="0dp"
+        android:layout_weight="0.5">
+
+        <Button
+            android:id="@+id/btJogarNovamente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Jogar novamente"
+            android:layout_marginRight="10dp" />
+
+        </LinearLayout>
+
+
+
+
+</LinearLayout>
